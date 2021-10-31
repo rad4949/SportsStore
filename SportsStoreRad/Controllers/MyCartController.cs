@@ -1,24 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using SportsStoreRad.Models;
+using SportsStoreRad.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SportsStoreRad.Infrastructure;
-using SportsStoreRad.ViewModels;
 
 namespace SportsStoreRad.Controllers
 {
-    public class CartController : Controller
+    public class MyCartController : Controller
     {
         private IProductRepository repository;
         private Cart cart;
 
-        public CartController(IProductRepository repo, Cart cartService)
+        public MyCartController(IProductRepository repo, Cart cartService)
         {
             repository = repo;
             cart = cartService;
+        }
+
+        public ViewResult Temp()
+        {
+            return View();
         }
 
         public ViewResult Index(string returnUrl)
@@ -31,7 +34,7 @@ namespace SportsStoreRad.Controllers
         }
 
         [HttpGet]
-        public RedirectToActionResult AddToCart(int productId=0, string returnUrl="")
+        public RedirectToActionResult AddToCart(int productId = 0, string returnUrl = "")
         {
             Product product = repository.Products
                 .FirstOrDefault(p => p.ProductID == productId);

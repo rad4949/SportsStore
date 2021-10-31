@@ -62,6 +62,10 @@ namespace SportsStoreRad
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                  name: "null",
+                  pattern: "{controller}/{action}/{id}");
+
+                endpoints.MapControllerRoute(
                    name: "pagination",
                    pattern: "{category}/Page{productPage}",
                    defaults: new { Controller = "Product", action = "List" });
@@ -82,8 +86,13 @@ namespace SportsStoreRad
                    defaults: new { Controller = "Product", action = "List", productPage = 1 });
 
                 endpoints.MapControllerRoute(
-                   name: "null",
-                   pattern: "{controller}/{action}/{id}");
+                    name: "default",
+                    pattern: "{controller=Cart}/{action=AddToCart}/{Id?}");
+
+                endpoints.MapControllerRoute(
+                 name: "default",
+                 pattern: "{controller=Cart}/{action=Index}/{Id?}");
+
             });
 
             using (var scope = app.ApplicationServices.CreateScope())
