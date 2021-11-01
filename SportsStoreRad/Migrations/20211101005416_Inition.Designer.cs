@@ -10,7 +10,7 @@ using SportsStoreRad.Models;
 namespace SportsStoreRad.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211101004032_Inition")]
+    [Migration("20211101005416_Inition")]
     partial class Inition
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,16 +63,6 @@ namespace SportsStoreRad.Migrations
 
                     b.Property<bool>("GiftWrap")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Line1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Line2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Line3")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

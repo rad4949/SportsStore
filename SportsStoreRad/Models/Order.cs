@@ -13,14 +13,10 @@ namespace SportsStoreRad.Models
         public int OrderID { get; set; }
         [BindNever]
         public ICollection<CartLine> Lines { get; set; }
-
+        [BindNever]
+        public bool Shipped { get; set; }
         [Required(ErrorMessage = "Please enter a name")]
-        public string Name { get; set; }
-
-        [Required(ErrorMessage = "Please enter the first address line")]
-        public string Line1 { get; set; }
-        public string Line2 { get; set; }
-        public string Line3 { get; set; }
+        public string Name { get; set; }      
 
         [Required(ErrorMessage = "Please enter a city name")]
         public string City { get; set; }
