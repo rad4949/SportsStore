@@ -10,7 +10,7 @@ using SportsStoreRad.Models;
 namespace SportsStoreRad.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211101005416_Inition")]
+    [Migration("20211101200122_Inition")]
     partial class Inition
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,6 +67,9 @@ namespace SportsStoreRad.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
 
                     b.Property<string>("State")
                         .IsRequired()

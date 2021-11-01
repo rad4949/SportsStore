@@ -12,6 +12,7 @@ namespace SportsStoreRad.Migrations
                 {
                     OrderID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Shipped = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     City = table.Column<string>(nullable: false),
                     State = table.Column<string>(nullable: false),
