@@ -53,7 +53,7 @@ namespace SportsStoreRad.Models
                  new Product
                  {
                      Name = "Thinking Cap",
-                     Description = "Improve brain efficiency Ьу 75",
+                     Description = "Improve brain efficiency bу 75",
                      Category = "Chess",
                      Price = 16
                  },
