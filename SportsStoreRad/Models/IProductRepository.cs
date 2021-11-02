@@ -8,5 +8,7 @@ namespace SportsStoreRad.Models
     public interface IProductRepository
     {
         IQueryable<Product> Products { get; }
+        void SaveProduct(Product product);
+        Product DeleteProduct(int prouctID);
     }
 }

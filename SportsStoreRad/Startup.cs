@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,18 +17,34 @@ namespace SportsStoreRad
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfigurationRoot Configuration { get; }
+        public Startup(IWebHostEnvironment hostEnv)
         {
-            Configuration = configuration;
+            Configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("appsettings.json").Build();
         }
 
-        public IConfiguration Configuration { get; }
+        //public Startup(IConfiguration configuration) =>
+        //   Configuration = configuration;
+
+        //public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<DbUser, DbRole>(options =>
+            {
+                options.Stores.MaxLengthForKeys = 128;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
@@ -55,6 +72,7 @@ namespace SportsStoreRad
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSession();
@@ -91,8 +109,12 @@ namespace SportsStoreRad
                     pattern: "{controller=Cart}/{action=AddToCart}/{Id?}");
 
                 endpoints.MapControllerRoute(
-                 name: "default",
-                 pattern: "{controller=Cart}/{action=Index}/{Id?}");
+                    name: "default",
+                    pattern: "{controller=Cart}/{action=Index}/{Id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Admin}/{action=Index}/{Id?}");
 
             });
 
@@ -101,6 +123,7 @@ namespace SportsStoreRad
                 ApplicationDbContext content = scope.ServiceProvider.GetService<ApplicationDbContext>();
                 SeedData.Initial(content);
             }
+            IdentitySeedData.SeedDataIdentity(app.ApplicationServices, env, this.Configuration);
         }
     }
 }

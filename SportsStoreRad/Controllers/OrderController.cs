@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SportsStoreRad.Models;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,14 @@ namespace SportsStoreRad.Controllers
             cart = cartService;
         }
 
+        [Authorize]
         public ViewResult List()
         {
             return View(repository.Orders.Where(p => !p.Shipped));
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult MarkShipped(int orderID)
         {
             Order order = repository.Orders.FirstOrDefault(o => o.OrderID == orderID);
