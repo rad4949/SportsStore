@@ -30,7 +30,6 @@ namespace SportsStoreRad.Controllers
             });
         }
 
-        [HttpGet]
         public RedirectToActionResult AddToCart(int productId=0, string returnUrl="")
         {
             Product product = repository.Products

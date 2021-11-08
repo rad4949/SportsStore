@@ -3,15 +3,27 @@
 <div class="">
     @if (Model.Lines.Count() > 0)
     {
-        <small class="navbar-text text-white">
-            <b>Your cart:</b>
-            @Model.Lines.Sum(x => x.Quantity) item(s)
-            @Model.ComputeTotalValue().ToString("c")
-        </small>
+        <div class="header__top__right">
+            <div class="header__top__right__cart">
+                <a asp-controller="Cart" asp-action="Index"
+                   asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+                    <img src="~/img/icon/cart.png" alt=""> <span>@Model.Lines.Sum(x => x.Quantity)</span>
+                </a>
+                <div class="cart__price">Cart: <span>@Model.ComputeTotalValue().ToString("c")</span></div>
+            </div>
+        </div>
     }
-    <a class="btn btn-sm btn-secondary navbar-btn"
-       asp-controller="Cart" asp-action="Index"
-       asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
-        Shopping cart
-    </a>
+    else
+    {
+        <div class="header__top__right" style="padding-top: 15px">
+            <div class="header__top__right__cart">
+                <a asp-controller="Cart" asp-action="Index"
+                   asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+                    <img src="~/img/icon/cart.png" alt=""> <span>0</span>
+                </a>
+                <div class="cart__price">Cart: <span>0</span></div>
+            </div>
+        </div>
+    }
 </div>
+

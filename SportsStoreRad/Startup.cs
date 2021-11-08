@@ -49,6 +49,7 @@ namespace SportsStoreRad
             services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddControllersWithViews();
             services.AddMvc();
             services.AddMemoryCache();
@@ -69,7 +70,7 @@ namespace SportsStoreRad
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseStatusCodePages();
             app.UseRouting();
 
             app.UseAuthentication();
@@ -80,6 +81,14 @@ namespace SportsStoreRad
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{Id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Product}/{action=List}/{Id?}");
+
                 endpoints.MapControllerRoute(
                   name: "null",
                   pattern: "{controller}/{action}/{id}");
@@ -106,15 +115,15 @@ namespace SportsStoreRad
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Cart}/{action=AddToCart}/{Id?}");
-
-                endpoints.MapControllerRoute(
-                    name: "default",
                     pattern: "{controller=Cart}/{action=Index}/{Id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Admin}/{action=Index}/{Id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Cart}/{action=AddToCart}/{Id?}");
 
             });
 

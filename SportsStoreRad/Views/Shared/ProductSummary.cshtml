@@ -1,22 +1,26 @@
 ﻿@model Product
 
-<div class="card card-outline-primary m-1 p-1">
-    <div class="bg-faded p-1">
-        <h4>
-            @Model.Name
-            <span class="badge badge-pill badge-primary" style="float:right">
-                <small>@Model.Price.ToString("c")</small>
-            </span>
-        </h4>
+<div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="product__item">
+        <div class="product__item__pic set-bg" data-setbg="https://content2.rozetka.com.ua/goods/images/big/190123872.jpg">
+            <div class="product__label">
+                <span>@Model.Name</span>
+            </div>
+        </div>
+        <form id="@Model.ProductID" asp-action="AddToCart"
+              asp-controller="Cart" method="post">
+            <input type="hidden" asp-for="ProductID" />
+            <input type="hidden" name="returnUrl"
+                   value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <div class="product__item__text">
+                <h6><a href="#">@Model.Description</a></h6>
+                <div class="product__item__price">@Model.Price.ToString("c")</div>
+                <div class="cart_add">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        Add To Cart
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
-    <form method="get" action="/Cart/AddToCart">
-        <input type="hidden" asp-for="ProductID" />
-        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <span class="card-text p-1">
-            @Model.Description
-            <button type="submit" class="btn btn-success btn-sm pull-right" style="float:right">
-                Add To Cart
-            </button>
-        </span>
-    </form>
 </div>

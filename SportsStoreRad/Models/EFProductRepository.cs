@@ -37,8 +37,9 @@ namespace SportsStoreRad.Models
 
         public Product DeleteProduct(int productID)
         {
-            Product dbEntry = context.Products
-                .FirstOrDefault(p => p.ProductID == productID);
+            //Product dbEntry = context.Products
+            //    .FirstOrDefault(p => p.ProductID == productID);
+            Product dbEntry = context.Products.Find(productID);
             if (dbEntry != null)
             {
                 context.Products.Remove(dbEntry);

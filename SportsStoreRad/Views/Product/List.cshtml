@@ -1,11 +1,16 @@
 ﻿@model ProductListViewModel
-
-@foreach (var p in Model.Products)
-{
-  @Html.Partial("ProductSummary", p)
+@{
+    Layout = "_Layout";
 }
+<div class="row">
+    @foreach (var p in Model.Products)
+    {
+        @Html.Partial("ProductSummary", p)
+    }
+</div>
 <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
      page-class="btn" page-class-normal="btn-secondary"
-     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" 
-     class="btn-group pull-right m-1">
+     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+     class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0">
 </div>
+
