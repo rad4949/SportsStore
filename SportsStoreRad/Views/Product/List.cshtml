@@ -2,7 +2,7 @@
 @{
     Layout = "_Layout";
 }
-<div class="row">
+<div style="padding-top: 15px;" class="row">
     @foreach (var p in Model.Products)
     {
         @Html.Partial("ProductSummary", p)
