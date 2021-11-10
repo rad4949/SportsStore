@@ -17,66 +17,75 @@ namespace SportsStoreRad.Models
                 content.AddRange(
                  new Product
                  {
-                     Name = "Kayak",
-                     Description = "A boat for one person",
-                     Category = "Watersports",
-                     Price = 275
+                     Img= "https://image.zzebra.zone/r/p7j2MOVLp88/fit/550/550/ce/1/plain/images/products/1/1448/390612392/214475_1CI_1.jpg@webp",
+                     Name = "Nike Therma Shield Strike",
+                     Description = "Поєднання флісового комфорту та водонепроникності",
+                     Category = "Штани",
+                     Price = 600
                  },
                  new Product
                  {
-                     Name = "Lifejacket",
-                     Description = "Protective and person",
-                     Category = "Watersports",
-                     Price = 48.95m
+                     Img = "https://image.zzebra.zone/r/p7j2MOVLp88/fit/550/550/ce/1/plain/images/products/1/1448/390612392/214475_1CI_1.jpg@webp",
+                     Name = "Under Armour Vital Woven Pant",
+                     Description = "Практичні штани, в яких зручно не лише бігати, а й активно проводити свій час",
+                     Category = "Штани",
+                     Price = 899
                  },
                  new Product
                  {
-                     Name = "Soccer Ball",
-                     Description = "Fifa-approved size and weigth",
-                     Category = "Soccer",
-                     Price = 19.50m
+                     Img = "https://image.zzebra.zone/r/1p-ojfJCdro/fit/550/550/ce/1/plain/images/products/1/4713/390640233/DU0473_1.jpg@webp",
+                     Name = "Under Armour Threadborne Graphic",
+                     Description = "Тренувальний джемпер на основі якісного матеріалу",
+                     Category = "Худі",
+                     Price = 1550.50m
                  },
                  new Product
                  {
-                     Name = "Corner flags",
-                     Description = "Give your playing field а professional touch",
-                     Category = "Soccer",
-                     Price = 34.95m
+                     Img = "https://image.zzebra.zone/r/1p-ojfJCdro/fit/550/550/ce/1/plain/images/products/1/4713/390640233/DU0473_1.jpg@webp",
+                     Name = "Adidas Performance",
+                     Description = "Класична чорна толстовка",
+                     Category = "Худі",
+                     Price = 2200
                  },
                  new Product
                  {
-                     Name = "Stadium",
-                     Description = "Flat-packed 35, 000-seat stadium",
-                     Category = "Soccer",
-                     Price = 79500
+                     Img = "https://image.zzebra.zone/r/1p-ojfJCdro/fit/550/550/ce/1/plain/images/products/1/4713/390640233/DU0473_1.jpg@webp",
+                     Name = "Adidas Originals Trefoil",
+                     Description = "Практичне худі, яке буде корисне для прохолодної погоди",
+                     Category = "Худі",
+                     Price = 1200
                  },
                  new Product
                  {
-                     Name = "Thinking Cap",
-                     Description = "Improve brain efficiency bу 75",
-                     Category = "Chess",
-                     Price = 16
+                     Img = "https://image.zzebra.zone/r/V8E_7zt5Gcw/fit/550/550/ce/1/plain/images/products/1/7005/484236125/GN3835_1.jpg@webp",
+                     Name = "Adidas Tiro 19 Cotton",
+                     Description = "Класична футболка-поло на кожен день",
+                     Category = "Футболки",
+                     Price = 999
                  },
                  new Product
                  {
+                     Img = "https://image.zzebra.zone/r/yHWTI4k3e3I/fit/550/550/ce/1/plain/images/products/1/740/464650980/GL8693_1.jpg@webp",
                      Name = "Unsteady Chair",
                      Description = "Secretly give your opponent а disadvantage",
-                     Category = "Chess",
+                     Category = "Куртки",
                      Price = 29.95m
                  },
                  new Product
                  {
-                     Name = "Human Chess Board",
-                     Description = "А fun game for the family",
-                     Category = "Chess",
-                     Price = 75
+                     Img = "https://image.zzebra.zone/r/V8E_7zt5Gcw/fit/550/550/ce/1/plain/images/products/1/7005/484236125/GN3835_1.jpg@webp",
+                     Name = "Lotto POLO FIRENZE",
+                     Description = "Класична футболка-поло",
+                     Category = "Футболки",
+                     Price = 450
                  },
                  new Product
                  {
-                     Name = "Bling-Bling King",
-                     Description = "Gold-plated, diamond-studded King",
-                     Category = "Chess",
-                     Price = 1200
+                     Img = "https://image.zzebra.zone/r/V8E_7zt5Gcw/fit/550/550/ce/1/plain/images/products/1/7005/484236125/GN3835_1.jpg@webp",
+                     Name = "Select Torino T-Shirt",
+                     Description = "Футболка для повсякденного носіння",
+                     Category = "Футболки",
+                     Price = 600
                  });
             }
             content.SaveChanges();

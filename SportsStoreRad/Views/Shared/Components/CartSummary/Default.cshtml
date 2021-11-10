@@ -3,27 +3,22 @@
 <div class="">
     @if (Model.Lines.Count() > 0)
     {
-        <div style="padding-top: 15px;" class="header__top__right" >
-            <div class="header__top__right__cart">
-                <a asp-controller="Cart" asp-action="Index"
-                   asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
-                    <img src="~/img/icon/cart.png" alt=""> <span>@Model.Lines.Sum(x => x.Quantity)</span>
-                </a>
-                <div>Cart: <span>@Model.ComputeTotalValue().ToString("c")</span></div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div style="padding-top: 15px;" class="header__top__right">
-            <div class="header__top__right__cart">
-                <a asp-controller="Cart" asp-action="Index"
-                   asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
-                    <img src="~/img/icon/cart.png" alt=""> <span>0</span>
-                </a>
-                <div style="color:white" class="cart__price">Cart: <span>0</span></div>
-            </div>
-        </div>
-    }
+        <a class="nav-icon position-relative text-decoration-none" asp-controller="Cart" asp-action="Index"
+           asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+            <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+            <span class="position-absolute top-0 left-100 translate-middle
+                  badge rounded-pill bg-light text-dark">@Model.Lines.Sum(x => x.Quantity)</span>
+            </a>
+        }
+        else
+        {
+            <a class="nav-icon position-relative text-decoration-none" asp-controller="Cart" asp-action="Index"
+               asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+                <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                <span class="position-absolute top-0 left-100 translate-middle
+                  badge rounded-pill bg-light text-dark">0</span>
+            </a>
+        }
 </div>
+
 

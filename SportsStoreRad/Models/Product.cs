@@ -22,5 +22,8 @@ namespace SportsStoreRad.Models
 
         [Required(ErrorMessage = "Please specify a category")]
         public string Category { get; set; }
+
+        [Required(ErrorMessage = "Please enter URL")]
+        public string Img { get; set; }
     }
 }

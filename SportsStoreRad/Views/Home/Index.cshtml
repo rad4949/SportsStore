@@ -2,33 +2,69 @@
     Layout = "_Layout";
 }
 
-
-    <section style="padding-top: 15px" class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__item set-bg" data-setbg="https://krossobzor.ru/wp-content/uploads/2019/05/new-balance-fresh-foam-1080-v8-testy-najnowszej-edycji-kultowego-modelu-06.jpg">
-                <div class="container">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="hero__text">
-                                <h2>The best things are those that combine luxury and practicality.</h2>
-                                @*<a asp-controller="Product" asp-action="List" class="primary-btn">Our products</a>*@
-                            </div>
-                        </div>
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/5fa54b15e7544df88a8aad4101098c3f_9366/Utilitas_Hooded_Parka_Black_GT1699_21_model.jpg" alt="">
                     </div>
-                </div>
-            </div>
-
-            <div class="hero__item set-bg" data-setbg="https://cdn.wallpapersafari.com/74/49/2XYnN0.jpg">
-                <div class="container">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="hero__text">
-                                <h2>Buy only the best things.</h2>
-                                @*<button type="submit" href="/Product/List" class="primary-btn">Our products</button>*@
-                            </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left align-self-center">
+                            <h1 class="h1 text-success"><b>SportStore</b> В нас найкращі ціни</h1>
+                            <p>
+                                Замовляйте в нас та отримуйте найкращі знижки на наступні покупки
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/fb9813283021403caab7ad4a011795d9_9366/adidas_Sportswear_Future_Icons_3-Stripes_Sweatshirt_Green_HB1420_21_model.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1">Носіть якісні речі</h1>
+                            <p>
+                               Вибирайте тільки оригінальні та комфортні речі
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/cd56221683fc40eaa3b2ad7501899b97_9366/Speed_Graphic_Long_Sleeve_Tee_(Gender_Neutral)_White_GR8741_21_model.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1">Завжди будьте в моді</h1>
+                            <p>
+                               Замовляйте сучасні речі від найпрестижніших брендів
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fas fa-chevron-right"></i>
+    </a>
+</div>

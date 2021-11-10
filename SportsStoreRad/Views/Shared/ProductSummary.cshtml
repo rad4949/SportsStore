@@ -1,8 +1,8 @@
 ﻿@model Product
 
-<div class="col-lg-3 col-md-6 col-sm-6">
+@*<div class="col-lg-3 col-md-6 col-sm-6">
     <div class="product__item">
-        <div class="product__item__pic set-bg" data-setbg="https://content2.rozetka.com.ua/goods/images/big/190123872.jpg">
+        <div class="product__item__pic set-bg" data-setbg="@Model.Img">
             <div class="product__label">
                 <span>@Model.Name</span>
             </div>
@@ -20,6 +20,29 @@
                         Add To Cart
                     </button>
                 </div>
+            </div>
+        </form>
+    </div>
+</div>*@
+
+<div class="col-md-4">
+    <div class="card mb-4 product-wap rounded-0">
+        <form id="@Model.ProductID" asp-action="AddToCart"
+              asp-controller="Cart" method="post">
+            <input type="hidden" asp-for="ProductID" />
+            <input type="hidden" name="returnUrl"
+                   value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <div class="card rounded-0">
+                <img class="card-img rounded-0 img-fluid" src="@Model.Img">
+                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                    <ul class="list-unstyled">
+                        <li><button class="btn btn-success text-white mt-2" type="submit"><i class="fas fa-cart-plus"></i></button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <a href="shop-single.html" class="h3 text-decoration-none">@Model.Name</a>
+                <p class="text-center mb-0">@Model.Price.ToString("c")</p>
             </div>
         </form>
     </div>
