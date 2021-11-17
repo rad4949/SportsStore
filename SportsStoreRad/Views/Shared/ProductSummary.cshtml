@@ -1,34 +1,9 @@
 ﻿@model Product
 
-@*<div class="col-lg-3 col-md-6 col-sm-6">
-    <div class="product__item">
-        <div class="product__item__pic set-bg" data-setbg="@Model.Img">
-            <div class="product__label">
-                <span>@Model.Name</span>
-            </div>
-        </div>
-        <form id="@Model.ProductID" asp-action="AddToCart"
-              asp-controller="Cart" method="post">
-            <input type="hidden" asp-for="ProductID" />
-            <input type="hidden" name="returnUrl"
-                   value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-            <div class="product__item__text">
-                <h6><a href="#">@Model.Description</a></h6>
-                <div class="product__item__price">@Model.Price.ToString("c")</div>
-                <div class="cart_add">
-                    <button type="submit" class="btn btn-success btn-sm">
-                        Add To Cart
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>*@
-
 <div class="col-md-4">
     <div class="card mb-4 product-wap rounded-0">
-        <form id="@Model.ProductID" asp-action="AddToCart"
-              asp-controller="Cart" method="post">
+        <form method="post" asp-action="AddToCart"
+              asp-controller="Cart" id="@Model.ProductID" >
             <input type="hidden" asp-for="ProductID" />
             <input type="hidden" name="returnUrl"
                    value="@ViewContext.HttpContext.Request.PathAndQuery()" />

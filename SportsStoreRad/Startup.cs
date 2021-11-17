@@ -23,12 +23,6 @@ namespace SportsStoreRad
             Configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("appsettings.json").Build();
         }
 
-        //public Startup(IConfiguration configuration) =>
-        //   Configuration = configuration;
-
-        //public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -77,7 +71,6 @@ namespace SportsStoreRad
             app.UseAuthorization();
 
             app.UseSession();
-            //app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {
@@ -86,12 +79,8 @@ namespace SportsStoreRad
                     pattern: "{controller=Home}/{action=Index}/{Id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Product}/{action=List}/{Id?}");
-
-                endpoints.MapControllerRoute(
-                  name: "null",
-                  pattern: "{controller}/{action}/{id}");
+                    name: "null",
+                    pattern: "{controller}/{action}/{id}");
 
                 endpoints.MapControllerRoute(
                    name: "pagination",
@@ -114,16 +103,16 @@ namespace SportsStoreRad
                    defaults: new { Controller = "Product", action = "List", productPage = 1 });
 
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Cart}/{action=Index}/{Id?}");
+                   name: "default",
+                   pattern: "{controller=Cart}/{action=AddToCart}/{Id?}");
+
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Cart}/{action=Index}/{Id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Admin}/{action=Index}/{Id?}");
-
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Cart}/{action=AddToCart}/{Id?}");
 
             });
 

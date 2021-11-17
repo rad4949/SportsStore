@@ -21,16 +21,16 @@ namespace SportsStoreRad.Controllers
             cart = cartService;
         }
 
-        public ViewResult Index(string returnUrl)
-        {
-            return View(new CartIndexViewModel
-            {
-                Cart = cart,
-                ReturnUrl = returnUrl
-            });
+        public IActionResult Index(string returnUrl)
+        {          
+            CartIndexViewModel model = new CartIndexViewModel();
+            model.Cart = cart;
+            model.ReturnUrl = returnUrl;
+            return View(model);
         }
 
-        public RedirectToActionResult AddToCart(int productId=0, string returnUrl="")
+        [HttpPost]
+        public IActionResult AddToCart(int productId=0, string returnUrl="")
         {
             Product product = repository.Products
                 .FirstOrDefault(p => p.ProductID == productId);
