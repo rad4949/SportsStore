@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsStoreRad.Models;
 using SportsStoreRad.ViewModels;
 using System;
@@ -17,59 +18,36 @@ namespace SportsStoreRad.Controllers
             repository = repo;
         }
 
-        public ViewResult List(Filter filter, string category, int productPage = 1)
+        public ViewResult List(string category, Filter filter, int page = 1)
         {
             ProductListViewModel model = new ProductListViewModel();
+            var query = repository.Products.AsQueryable();
             if (!string.IsNullOrEmpty(filter.Name))
             {
-                model.Products = repository.Products.Where(p => category == null || p.Category == category)
-               .OrderBy(p => p.ProductID)
-               .Skip((productPage - 1) * PageSize)
-               .Take(PageSize);
-
-                int tempTotalItems;
-                if((category == null) && (filter.Name == null))
-                {
-                    tempTotalItems = repository.Products.Count();
-                }
-                else if((category == null) && (filter.Name != null))
-                {
-                    tempTotalItems = repository.Products.Where(x => x.Name.ToLower().Contains(filter.Name.ToLower())).Count();
-                }
-                else if((category != null) && (filter.Name == null))
-                {
-                    tempTotalItems = repository.Products.Where(e => e.Category == category).Count();
-                }
-                else
-                {
-                    tempTotalItems = repository.Products.Count();
-                }
-                model.PagingInfo = new PagingInfo
-                {
-                    CurrentPage = productPage,
-                    ItemsPerPage = PageSize,
-                    TotalItems = tempTotalItems
-                };
+                query = query.Where(x => x.Name.ToLower().Contains(filter.Name.ToLower()));
             }
-            else
+            if (!string.IsNullOrEmpty(category))
             {
-                model.Products = repository.Products.Where(p => category == null || p.Category == category)
-               .OrderBy(p => p.ProductID)
-               .Skip((productPage - 1) * PageSize)
-               .Take(PageSize);
-
-                model.PagingInfo = new PagingInfo
+                if(category!="Всі")
                 {
-                    CurrentPage = productPage,
-                    ItemsPerPage = PageSize,
-                    TotalItems = category == null ?
-                    repository.Products.Count() :
-                    repository.Products.Where(e => e.Category == category).Count()
-                };
+                    query = query.Where(p => category == null || p.Category == category);
+                }
             }
+            int pageSize = 3;
+            int pageNo = page - 1;
 
+            model.Products = query.OrderBy(x => x.ProductID)
+                .Skip(pageNo * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            int allCount = query.Count();
+
+            model.Page = page;
+            model.MaxPage = (int)Math.Ceiling((double)allCount / pageSize);
             model.Filter = filter;
-            model.CurrentCategory = category;
+
+            var categorys = repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
 
             return View(model);
         }

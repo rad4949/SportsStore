@@ -76,10 +76,11 @@
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
 
-                        <ul class="collapse show list-unstyled pl-3">
-                            @await Component.InvokeAsync("NavigationMenu")
-                        </ul>
+                        @*<ul class="collapse show list-unstyled pl-3">
+            @await Component.InvokeAsync("NavigationMenu")
+        </ul>*@
 
+                        @await Component.InvokeAsync("NavigationMenu")
                     </li>
                 </ul>
             </div>

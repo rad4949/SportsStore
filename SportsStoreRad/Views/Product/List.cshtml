@@ -2,6 +2,7 @@
 @{
     Layout = "_ShopLayout";
 }
+
 <div class="row">
     @foreach (var p in Model.Products)
     {
@@ -9,10 +10,27 @@
     }
 </div>
 
-<div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
-     page-class="btn" page-class-normal="btn-secondary"
-     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
-     class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0">
-</div>
+<nav>
+    <ul class="pagination">
+        @{int page = Model.Page; }
+        <li class="page-item @(page == 1? "disabled":"")">
+            <a class="page-link" asp-action="List" asp-controller="Product"
+               asp-route-page="@(page - 1)" asp-route-name="@Model.Filter.Name" tabindex="-1">Попередня</a>
+        </li>
+        @for (int i = 1; i < Model.MaxPage + 1; i++)
+        {
+            <li class="page-item @(page == i ? "active": "" )">
+                <a class="page-link" asp-action="List" asp-controller="Product"
+                   asp-route-page="@i" asp-route-name="@Model.Filter.Name">@i <span class="sr-only">(current)</span></a>
+            </li>
+        }
+        <li class="page-item @(page == Model.MaxPage? "disabled":"")">
+            <a class="page-link" asp-action="List" asp-controller="Product" asp-route-page="@(page+1)"
+               asp-route-name="@Model.Filter.Name">Наступна</a>
+        </li>
+    </ul>
+</nav>
+
+
 
 
