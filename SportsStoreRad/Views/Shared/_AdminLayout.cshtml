@@ -1,34 +1,180 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css" />
-    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Admin</title>
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link rel="stylesheet" href="~/css/sb-admin-2.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
     <style>
-        .input-validation-error {
-            border-color: red;
-            background-color: #fee;
+        .leftLocation {
+            right: 0;
+            margin-right: 20px;
+            position: absolute;
         }
+
+        .collapsible {
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 14px;
+        }
+
+            .active, .collapsible:hover {
+                background: #4e73df;
+            }
+
+            .collapsible:after {
+                content: '\002B';
+                color: rgba(255,255,255,.8);
+                font-weight: bold;
+                float: right;
+                margin-left: 5px;
+            }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: white;
+            font-size: 13px;
+        }
+
+        .sizeText {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 11pt;
+        }
+
+        .colorBtn {
+            width: 100%;
+            background: #4e73df;
+        }
+
+        .divBarSize {
+            width: 100%;
+            background: #4e73df;
+        }
+
+        .btn-primary {
+            width: 100%;
+            color: #ffffff;
+        }
+
+            .btn-primary:hover {
+                box-shadow: inset 0 0 0 20rem var(--darken-1);
+                color: darkgrey;
+            }
     </style>
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js">
-    </script>
 </head>
-<body class="m-1 p-1">
-    <div class="bg-info p-2 row">
-        <div class="col">
-            <h4>@ViewBag.Title</h4>
-        </div>
-        <div class="col-2">
-            <a class="btn btn-sm btn-primary"
-               asp-action="Logout" asp-controller="Account">Log Out</a>
+
+<body>
+    <div id="wrapper">
+        <ul class=" navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Teacher/Index">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Admin</div>
+            </a>
+
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/index">
+                    <span>Таблиця товарів</span>
+                </a>
+            </li>
+
+        </ul>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "form-inline my-2 my-lg-0" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <a class="nav navbar-nav ml-auto">Привіт @User.Identity.Name</a>
+
+                            <div class="leftLocation">
+                                <a class="nav navbar-nav ml-auto " asp-controller="Account" asp-action="Login" onclick="document.getElementById('logoutForm').submit();">
+                                    Вихід
+                                </a>
+                            </div>
+
+                        }
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Вхід</a>
+                            </li>
+                        </ul>
+                    }
+
+                </nav>
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    @*<div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2021</span>
+                        </div>*@
+                </div>
+            </footer>
         </div>
     </div>
-    @if (TempData["message"] != null)
-    {
-        <div class="alert alert-success mt-1">@TempData["message"]</div>
-    }
-    @RenderBody()
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/js/sb-admin-2.min.js"></script>
+    <script src="~/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/demo/chart-pie-demo.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
 </body>
 </html>

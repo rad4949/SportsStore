@@ -1,10 +1,9 @@
 ﻿@model LoginModel
 @{
-    ViewBag.Title = "Log In";
-    Layout = "_AdminLayout";
+    Layout = "_AccountLayout";
 }
 
-<div class="text-danger" asp-validation-summary="All"></div>
+@*<div class="text-danger" asp-validation-summary="All"></div>
 
 <form asp-action="Login" asp-controller="Account" method="post">
     <input type="hidden" asp-for="ReturnUrl" />
@@ -18,5 +17,61 @@
         <div><span asp-validation-for="Password" class="text-danger"></span></div>
         <input asp-for="Password" class="form-control" />
     </div>
-    <button class="btn btn-primary" type="submit">Log In</button>
-</form>
+    <button class="btn btn-primary" type="submit">Увійти</button>
+</form>*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Вхід</title>
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        .marTop {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-primary">
+    <div class="row justify-content-center">
+        <div class="marTop col-xl-10 col-lg-12 col-md-9">
+            <div class="col-md-6 offset-md-3">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Вхід</h1>
+                        </div>
+                        <form class="user" asp-action="Login" asp-controller="Account" method="post">
+                            <input type="hidden" asp-for="ReturnUrl" />
+                            <div class="form-group">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <input asp-for="Email" type="text" class="form-control form-control-user" placeholder="Введіть пошту..." />
+                            </div>
+                            <div class="form-group">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <input asp-for="Password" class="form-control form-control-user" placeholder="Введіть пароль..." />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Увійти" class="btn btn-primary btn-user btn-block" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/js/sb-admin-2.min.js"></script>
+</body>
+</html>

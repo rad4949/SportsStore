@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,7 +14,6 @@
     <link rel="stylesheet" href="~/assets/css/fontawesome.min.css">
 </head>
 <body>
-    <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
@@ -31,28 +29,20 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/Home/Index">Home</a>
+                            <a class="nav-link" href="/Home/Index">Магазин</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" asp-controller="Product" asp-action="List">Товари</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Product" asp-action="List">Shop</a>
+                            <a class="nav-link" href="about.html">Про нас</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact.html">Контакти</a>
                         </li>
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
-                    @*<div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
-                        </div>
-                    </div>*@
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
@@ -78,41 +68,25 @@
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            123 Consectetur at ligula 10660
+                            м.Київ, вул.Степана Бандери, буд.49
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                            <a class="text-decoration-none" href="tel:067-493-4949">067-493-4949</a>
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                            <a class="text-decoration-none" href="mailto:info@company.com">sportstore@gmail.com</a>
                         </li>
                     </ul>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="w-100 bg-black py-3">
-            <div class="container">
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <p class="text-left text-light">
-                            Copyright &copy; 2021
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Start Script -->
     <script src="~/assets/js/jquery-1.11.0.min.js"></script>
     <script src="~/assets/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="~/assets/js/bootstrap.bundle.min.js"></script>
     <script src="~/assets/js/templatemo.js"></script>
     <script src="~/assets/js/custom.js"></script>
-    <!-- End Script -->
 </body>
 </html>
