@@ -10,7 +10,9 @@ using Microsoft.Extensions.Hosting;
 using SportsStoreRad.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SportsStoreRad
@@ -20,7 +22,14 @@ namespace SportsStoreRad
         public IConfigurationRoot Configuration { get; }
         public Startup(IWebHostEnvironment hostEnv)
         {
-            Configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("appsettings.json").Build();
+            DBConnect connect = new DBConnect();
+            FileStream fs = new FileStream("DBConnectString.json", FileMode.OpenOrCreate);
+            JsonSerializer.SerializeAsync<DBConnect>(fs, connect);
+            fs.Close();
+
+            fs = new FileStream("DBConnectString.json", FileMode.OpenOrCreate);
+            Configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonStream(fs).Build();
+            fs.Close();
         }
 
         public void ConfigureServices(IServiceCollection services)

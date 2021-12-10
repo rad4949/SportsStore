@@ -1,0 +1,1 @@
+{"Logging":{"Default":"Information","Microsoft":"Warning","Microsoft.Hosting.Lifetime":"Information"},"ConnectionStrings":{"DefaultConnection":"Server=den1.mssql8.gear.host; Database=sportsstorerad; User Id=sportsstorerad; Password=Pq7nwOB~hg~1; MultipleActiveResultSets=true"},"AllowedHosts":"*"}
