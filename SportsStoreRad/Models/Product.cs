@@ -12,7 +12,10 @@ namespace SportsStoreRad.Models
 
         [Display(Name = "Ім'я")]
         [Required(ErrorMessage = "Please enter a product name")]
-        public string Name { get; set; }
+        public string Brand { get; set; }
+        [Display(Name = "Ім'я")]
+        [Required(ErrorMessage = "Please enter a product name")]
+        public string Title { get; set; }
 
         [Display(Name = "Опис")]
         [Required(ErrorMessage = "Please enter a description")]

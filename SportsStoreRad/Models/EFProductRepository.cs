@@ -26,7 +26,7 @@ namespace SportsStoreRad.Models
                     .FirstOrDefault(p => p.ProductID == product.ProductID);
                 if (dbEntry != null)
                 {
-                    dbEntry.Name = product.Name;
+                    dbEntry.Brand = product.Brand;
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
                     dbEntry.Category = product.Category;

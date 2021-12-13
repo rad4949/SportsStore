@@ -16,7 +16,6 @@ namespace SportsStoreRad.Controllers
     {
         private readonly UserManager<DbUser> userManager;
         private readonly SignInManager<DbUser> signInManager;
-        //private readonly IWebHostEnvironment _env;
 
         public AccountController(UserManager<DbUser> userMgr,
                 SignInManager<DbUser> signInMgr, RoleManager<DbRole> roleManager,
@@ -24,8 +23,6 @@ namespace SportsStoreRad.Controllers
         {
             userManager = userMgr;
             signInManager = signInMgr;
-            //_env = env;
-            //IdentitySeedData.EnsurePopulated(userMgr).Wait();
         }
 
         [AllowAnonymous]
@@ -44,17 +41,6 @@ namespace SportsStoreRad.Controllers
         {
             if (ModelState.IsValid)
             {
-                //DbUser user = await userManager.FindByNameAsync(loginModel.Email);
-                //if (user != null)
-                //{
-                //    await signInManager.SignOutAsync();
-                //    if ((await signInManager.PasswordSignInAsync(user,
-                //            loginModel.Password, false, false)).Succeeded)
-                //    {
-                //        return Redirect(loginModel?.ReturnUrl ?? "/Admin/Index");
-                //    }
-
-                //}
                 var user = await userManager.FindByEmailAsync(loginModel.Email);
                 if (user != null)
                 {

@@ -14,11 +14,15 @@ namespace SportsStoreRad.ViewModels
         public Filter Filter { get; set; }
         public IEnumerable<Product> Products { get; set; }
         public SelectList Categories { get; set; }
+        public SelectList Brands { get; set; }
     }
     public class Filter
     {
         public string Name { get; set; }
+        //public string Brand { get; set; }
+        //public string Title { get; set; }
         public string CurrentCategory { get; set; }
+        public string CurrentBrand { get; set; }
     }
 
 }

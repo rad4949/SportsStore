@@ -7,8 +7,14 @@ namespace SportsStoreRad.Models
 {
     public class Cart
     {
+        public delegate void DLAddItem(Product product, int quantity);
+        public event DLAddItem AddItemEvent; 
         private List<CartLine> lineCollection = new List<CartLine>();
 
+        public virtual void AddElementInCartLine(Product product, int quantity)
+        {
+            AddItemEvent?.Invoke(product, quantity);
+        }
         public virtual void AddItem(Product product, int quantity)
         {
             CartLine line = lineCollection

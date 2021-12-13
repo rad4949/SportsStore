@@ -1,23 +1,11 @@
 ﻿@model SportsStoreRad.ViewModels.ProductListViewModel
 
-@*@foreach (Filter item in Model)
-    {
-        <li>
-                <form asp-action="List" asp-controller="Product">
-                    <a class="text-decoration-none">
-                        @item.CurrentCategory
-                    </a>
-                    <input type="hidden" value="@item" />
-
-                </form>
-            </li>
-    }*@
-@*<ul class="collapse show list-unstyled pl-3">
-    
-</ul>*@
 <form asp-action="List" asp-controller="Product">
     <div class="form-inline">
         @Html.DropDownList("category", Model.Categories as SelectList,
+       htmlAttributes: new { @class = "form-control" })
+
+        @Html.DropDownList("brand", Model.Brands as SelectList,
        htmlAttributes: new { @class = "form-control" })
 
         <input type="submit" value="Фільтр" class="btn btn-danger" />

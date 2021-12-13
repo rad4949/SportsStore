@@ -12,21 +12,29 @@
 
 <nav>
     <ul class="pagination">
-        @{int page = Model.Page; }
+        @{
+            int page = Model.Page;
+        }
         <li class="page-item @(page == 1? "disabled":"")">
             <a class="page-link" asp-action="List" asp-controller="Product"
-               asp-route-page="@(page - 1)" asp-route-name="@Model.Filter.Name" tabindex="-1">Попередня</a>
+               asp-route-page="@(page - 1)" asp-route-name="@Model.Filter.Name"
+               asp-route-category="@Model.Filter.CurrentCategory"
+               asp-route-brand="@Model.Filter.CurrentBrand" tabindex="-1">Попередня</a>
         </li>
         @for (int i = 1; i < Model.MaxPage + 1; i++)
         {
             <li class="page-item @(page == i ? "active": "" )">
                 <a class="page-link" asp-action="List" asp-controller="Product"
-                   asp-route-page="@i" asp-route-name="@Model.Filter.Name">@i <span class="sr-only">(current)</span></a>
+               asp-route-page="@i" asp-route-name="@Model.Filter.Name"
+               asp-route-category="@Model.Filter.CurrentCategory"
+               asp-route-brand="@Model.Filter.CurrentBrand">@i <span class="sr-only">(current)</span></a>
             </li>
         }
         <li class="page-item @(page == Model.MaxPage? "disabled":"")">
             <a class="page-link" asp-action="List" asp-controller="Product" asp-route-page="@(page+1)"
-               asp-route-name="@Model.Filter.Name">Наступна</a>
+               asp-route-name="@Model.Filter.Name"
+               asp-route-category="@Model.Filter.CurrentCategory"
+               asp-route-brand="@Model.Filter.CurrentBrand">Наступна</a>
         </li>
     </ul>
 </nav>

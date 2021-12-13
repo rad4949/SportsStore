@@ -73,7 +73,8 @@ namespace SportsStoreRad.Migrations
                 {
                     ProductID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: false),
+                    Brand = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     Category = table.Column<string>(nullable: false),

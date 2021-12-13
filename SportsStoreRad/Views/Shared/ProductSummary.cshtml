@@ -1,9 +1,14 @@
 ﻿@model Product
+<style>
+    textbottomright {
+        text-align: right;
+    }
+</style>
 
 <div class="col-md-4">
     <div class="card mb-4 product-wap rounded-0">
         <form method="post" asp-action="AddToCart"
-              asp-controller="Cart" id="@Model.ProductID" >
+              asp-controller="Cart" id="@Model.ProductID">
             <input type="hidden" asp-for="ProductID" />
             <input type="hidden" name="returnUrl"
                    value="@ViewContext.HttpContext.Request.PathAndQuery()" />
@@ -16,8 +21,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <a href="shop-single.html" class="h3 text-decoration-none">@Model.Name</a>
-                <p class="text-center mb-0">@Model.Price.ToString("c")</p>
+                <a href="shop-single.html" class="h2 text-decoration-none">@Model.Brand<br></a>
+                <a href="shop-single.html" class="h3 text-decoration-none">@Model.Title</a>
+                <p class="textbottomright mb-0">@Model.Price.ToString("c")</p>
             </div>
         </form>
     </div>

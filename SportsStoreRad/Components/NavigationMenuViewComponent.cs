@@ -21,23 +21,8 @@ namespace SportsStoreRad.Components
 
         public IViewComponentResult Invoke()
         {
-            //ViewBag.SelectedCategory = RouteData?.Values["category"];
-            //return View(repository.Products.Select(x => x.Category)
-            //    .Distinct().OrderBy(x => x));
-
-            //List<Filter> ListCategory = new List<Filter>();
-            //var categorys = repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
-            //foreach (string item in categorys)
-            //{
-            //    Filter element = new Filter();
-            //    element.CurrentCategory = item;
-            //    ListCategory.Add(element);
-            //}
-            //return View(ListCategory);
-
-            ProductListViewModel ListCategory = new ProductListViewModel();
+            ProductListViewModel ListFilters = new ProductListViewModel();
             var categorys = repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
-
             foreach (string item in categorys)
             {
                 Filter element = new Filter();
@@ -49,10 +34,23 @@ namespace SportsStoreRad.Components
             {
                 CategoryList.Add(item);
             }
-            ListCategory.Categories = new SelectList(CategoryList);
+            ListFilters.Categories = new SelectList(CategoryList);
 
-            return View(ListCategory);
+            var brand = repository.Products.Select(x => x.Brand).Distinct().OrderBy(x => x);
+            foreach (string item in brand)
+            {
+                Filter element = new Filter();
+                element.CurrentBrand = item;
+            }
+            List<string> BrandList = new List<string>();
+            BrandList.Add("Всі");
+            foreach (string item in brand)
+            {
+                BrandList.Add(item);
+            }
+            ListFilters.Brands = new SelectList(BrandList);
 
+            return View(ListFilters);
         }
     }
 }

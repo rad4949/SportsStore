@@ -28,7 +28,7 @@ namespace SportsStoreRad.Controllers
             if (ModelState.IsValid)
             {
                 repository.SaveProduct(product);
-                TempData["message"] = $"{product.Name} has been saved";
+                TempData["message"] = $"{product.Brand} було збережено";
                 return RedirectToAction("Index");
             }
             else
@@ -44,7 +44,7 @@ namespace SportsStoreRad.Controllers
             Product deletedProduct = repository.DeleteProduct(productId);
             if (deletedProduct != null)
             {
-                TempData["message"] = $"{deletedProduct.Name} was deleted";
+                TempData["message"] = $"{deletedProduct.Brand} було видалено";
             }
             return RedirectToAction("Index");
         }

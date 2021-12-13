@@ -17,21 +17,33 @@ namespace SportsStoreRad.Controllers
             repository = repo;
         }
 
-        public ViewResult List(string category, Filter filter, int page = 1)
+        public ViewResult List(string category, string brand, Filter filter, int page = 1)
         {
+            filter.CurrentCategory = category;
+            filter.CurrentBrand = brand;
             ProductListViewModel model = new ProductListViewModel();
             var query = repository.Products.AsQueryable();
             if (!string.IsNullOrEmpty(filter.Name))
             {
-                query = query.Where(x => x.Name.ToLower().Contains(filter.Name.ToLower()));
+                query = query.Where(x => x.Brand.ToLower().Contains(filter.Name.ToLower()) ||
+                x.Title.ToLower().Contains(filter.Name.ToLower()));
             }
+
             if (!string.IsNullOrEmpty(category))
             {
-                if(category!="Всі")
+                if (category != "Всі")
                 {
                     query = query.Where(p => category == null || p.Category == category);
                 }
             }
+            if (!string.IsNullOrEmpty(brand))
+            {
+                if (brand != "Всі")
+                {
+                    query = query.Where(p => brand == null || p.Brand == brand);
+                }
+            }
+
             int pageSize = 3;
             int pageNo = page - 1;
 
@@ -46,7 +58,7 @@ namespace SportsStoreRad.Controllers
             model.MaxPage = (int)Math.Ceiling((double)allCount / pageSize);
             model.Filter = filter;
 
-            var categorys = repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
+            //var categorys = repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
 
             return View(model);
         }

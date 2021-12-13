@@ -36,21 +36,27 @@ namespace SportsStoreRad.Controllers
                 .FirstOrDefault(p => p.ProductID == productId);
             if (product != null)
             {
-                cart.AddItem(product, 1);
+                cart.AddItemEvent += cart.AddItem;
+                cart.AddElementInCartLine(product, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToActionResult RemoveFromCart(int productId,
-                string returnUrl)
+        public delegate RedirectToActionResult DLRemoveFromCart(int productId, string returnUrl);
+        public RedirectToActionResult RemoveFromCart(int productId, string returnUrl)
         {
-            Product product = repository.Products
+            DLRemoveFromCart dLRemoveFromCart = delegate
+            {
+                Product product = repository.Products
                 .FirstOrDefault(p => p.ProductID == productId);
 
-            if (product != null)
-            {
-                cart.RemoveLine(product);
-            }
+                if (product != null)
+                {
+                    cart.RemoveLine(product);
+                }
+                return RedirectToAction("Index", new { returnUrl });
+            };
+            dLRemoveFromCart(productId, returnUrl);
             return RedirectToAction("Index", new { returnUrl });
         }
     }

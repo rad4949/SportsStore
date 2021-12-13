@@ -87,29 +87,29 @@ namespace SportsStoreRad
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{Id?}");
 
-                endpoints.MapControllerRoute(
-                    name: "null",
-                    pattern: "{controller}/{action}/{id}");
+                //endpoints.MapControllerRoute(
+                //    name: "null",
+                //    pattern: "{controller}/{action}/{id}");
 
-                endpoints.MapControllerRoute(
-                   name: "pagination",
-                   pattern: "{category}/Page{productPage}",
-                   defaults: new { Controller = "Product", action = "List" });
+                //endpoints.MapControllerRoute(
+                //   name: "pagination",
+                //   pattern: "{category}/Page{productPage}",
+                //   defaults: new { Controller = "Product", action = "List" });
 
-                endpoints.MapControllerRoute(
-                   name: "null",
-                   pattern: "Page{productPage:int}",
-                   defaults: new { Controller = "Product", action = "List", productPage = 1 });
+                //endpoints.MapControllerRoute(
+                //   name: "null",
+                //   pattern: "Page{productPage:int}",
+                //   defaults: new { Controller = "Product", action = "List", productPage = 1 });
 
-                endpoints.MapControllerRoute(
-                   name: "null",
-                   pattern: "{category}",
-                   defaults: new { Controller = "Product", action = "List", productPage = 1 });
+                //endpoints.MapControllerRoute(
+                //   name: "null",
+                //   pattern: "{category}",
+                //   defaults: new { Controller = "Product", action = "List", productPage = 1 });
 
-                endpoints.MapControllerRoute(
-                   name: "null",
-                   pattern: "",
-                   defaults: new { Controller = "Product", action = "List", productPage = 1 });
+                //endpoints.MapControllerRoute(
+                //   name: "null",
+                //   pattern: "",
+                //   defaults: new { Controller = "Product", action = "List", productPage = 1 });
 
                 endpoints.MapControllerRoute(
                    name: "default",
