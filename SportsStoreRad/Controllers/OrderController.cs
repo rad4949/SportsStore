@@ -22,7 +22,22 @@ namespace SportsStoreRad.Controllers
         [Authorize]
         public ViewResult List()
         {
-            return View(repository.Orders.Where(p => !p.Shipped));
+            return View(repository.Orders/*.Where(p => !p.Shipped)*/);
+        }
+
+
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult MarkShippedRevers(int orderID)
+        {
+            Order order = repository.Orders.FirstOrDefault(o => o.OrderID == orderID);
+            if (order != null)
+            {
+                order.Shipped = false;
+                repository.SaveOrder(order);
+            }
+            return RedirectToAction(nameof(List));
         }
 
         [HttpPost]
@@ -30,7 +45,7 @@ namespace SportsStoreRad.Controllers
         public IActionResult MarkShipped(int orderID)
         {
             Order order = repository.Orders.FirstOrDefault(o => o.OrderID == orderID);
-            if(order!=null)
+            if (order != null)
             {
                 order.Shipped = true;
                 repository.SaveOrder(order);

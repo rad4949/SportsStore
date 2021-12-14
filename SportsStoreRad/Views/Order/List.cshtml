@@ -3,39 +3,54 @@
     ViewBag.Title = "Orders";
     Layout = "_AdminLayout";
 }
-@if (Model.Count() > 0)
-{
-    <table class="table table-bordered table-striped">
-        <tr><th>Name</th><th>Zip</th><th colspan="2">Details</th><th></th></tr>
+<table class="table table-bordered table-striped">
+    <tr><th>Id</th><th>Ім'я</th><th>Код міста</th><th colspan="2">Деталі</th><th>Статус</th></tr>
+    @if (Model.Count() > 0)
+    {
         @foreach (Order o in Model)
         {
             <tr>
+                <td>@o.OrderID</td>
                 <td>@o.Name</td>
                 <td>@o.Zip</td>
-                <th>Product</th>
-                <th>Quantity</th>
+                <th>Товар</th>
+                <th>Кількість</th>
                 <td>
-                    <form asp-action="MarkShipped" method="post">
-                        <input type="hidden" name="orderId" value="@o.OrderID" />
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Ship
-                        </button>
-                    </form>
+                    @if (!o.Shipped)
+                    {
+                        <form asp-action="MarkShipped" method="post">
+                            <input type="hidden" name="orderId" value="@o.OrderID" />
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Відправити
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="MarkShippedRevers" method="post">
+                            <input type="hidden" name="orderId" value="@o.OrderID" />
+                            <button type="submit" class="btn btn-sm btn-success">
+                                Відправлено
+                            </button>
+                        </form>
+                    }
                 </td>
             </tr>
             @foreach (CartLine line in o.Lines)
             {
                 <tr>
-                    <td colspan="2"></td>
-                    <td>@line.Product.Brand</td>
+                    <td colspan="3"></td>
+                    <td>@line.Product.Brand @line.Product.Title</td>
                     <td>@line.Quantity</td>
                     <td></td>
                 </tr>
             }
         }
-    </table>
-}
-else
-{
-    <div class="text-center">No Unshipped Orders</div>
-}
+    }
+
+    else
+    {
+        <div class="text-center">Немає невідправлених замовлень</div>
+    }
+
+</table>
