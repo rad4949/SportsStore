@@ -7,15 +7,143 @@
         margin: 0 0 10px 0;
         box-sizing: border-box;
     }
+
+    #rangeBox { /* carry complete  range box*/
+        width: 100%;
+        height: 100px;
+    }
+
+    #sliderBox {
+        position: relative;
+        top: 0%;
+        width: 100%; /*2x width*/
+    }
+
+    #slider0to50 {
+        width: 50%; /*1x width*/
+        position: absolute;
+        left: 0%;
+    }
+
+    #slider51to100 {
+        width: 50%; /*1x width*/
+        position: absolute;
+        left: 50%;
+    }
+
+    #inputRange {
+        position: relative;
+        top: 50%;
+    }
+
+        #inputRange::after {
+            content: "";
+            clear: both;
+            display: block
+        }
+
+        #inputRange #min {
+            width: 30%;
+            float: left;
+        }
+
+        #inputRange #max {
+            width: 30%;
+            float: right;
+        }
 </style>
 <form asp-action="List" asp-controller="Product">
     <div>
+        <h>Категорія одягу</h>
         @Html.DropDownList("category", Model.Categories as SelectList,
         htmlAttributes: new { @class = "form-control" })
 
+        <h>Бренд</h>
         @Html.DropDownList("brand", Model.Brands as SelectList,
         htmlAttributes: new { @class = "form-control" })
 
-        <input type="submit" value="Фільтр" class="btn btn-danger " />
+        <h>Ціна</h>
+        <div id="rangeBox">
+            <div id="sliderBox">
+                @if (@Model.Filter.CurrentPriceMin != -1)
+                {
+                    <input type="range" id="slider0to50" step="1" min="0" max="@Model.PriceNumber.ValuePriceMax"
+                       value="@Model.Filter.CurrentPriceMin">
+                }
+                else
+                {
+                    <input type="range" id="slider0to50" step="1" min="0" max="@Model.PriceNumber.ValuePriceMax"
+                       value="0">
+                }
+
+                @if (@Model.Filter.CurrentPriceMax != -1)
+                {
+                    <input type="range" id="slider51to100" step="1" min="0" max="@Model.PriceNumber.ValuePriceMax"
+                       value="@Model.Filter.CurrentPriceMax">
+                }
+                else
+                {
+                    <input type="range" id="slider51to100" step="1" min="0" max="@Model.PriceNumber.ValuePriceMax"
+                       value="@Model.PriceNumber.ValuePriceMax">
+                }
+            </div>
+            <div id="inputRange">
+                @if (@Model.Filter.CurrentPriceMin != -1)
+                {
+                    <input name="priceMin" step="1" min="0" max="@Model.Filter.CurrentPriceMin"
+                       value="@Model.Filter.CurrentPriceMin" id="min">
+                }
+                else
+                {
+                    <input name="priceMin" step="1" min="0" max="@Model.Filter.CurrentPriceMin"
+                       value="0" id="min">
+                }
+
+                @if (@Model.Filter.CurrentPriceMax != -1)
+                {
+                    <input name="priceMax" step="1" min="0" max="@Model.PriceNumber.ValuePriceMax"
+                       value="@Model.Filter.CurrentPriceMax" id="max">
+                }
+                else
+                {
+                    <input name="priceMax" step="1" min="0" max="@Model.PriceNumber.ValuePriceMax"
+                       value="@Model.PriceNumber.ValuePriceMax" id="max">
+                }
+            </div>
+
+        </div>
+        <input type="submit" value="Фільтр">
     </div>
 </form>
+
+<script>
+        var sliderLeft=document.getElementById("slider0to50");
+     var sliderRight=document.getElementById("slider51to100");
+     var inputMin=document.getElementById("min");
+     var inputMax=document.getElementById("max");
+
+    ///value updation from input to slider
+    //function input update to slider
+    function sliderLeftInput(){//input udate slider left
+        sliderLeft.value=inputMin.value;
+    }
+    function sliderRightInput(){//input update slider right
+        sliderRight.value=(inputMax.value);//chnage in input max updated in slider right
+    }
+
+    //calling function on change of inputs to update in slider
+    inputMin.addEventListener("change",sliderLeftInput);
+    inputMax.addEventListener("change",sliderRightInput);
+
+
+    ///value updation from slider to input
+    //functions to update from slider to inputs
+    function inputMinSliderLeft(){//slider update inputs
+        inputMin.value=sliderLeft.value;
+    }
+    function inputMaxSliderRight(){//slider update inputs
+        inputMax.value=sliderRight.value;
+    }
+    sliderLeft.addEventListener("change",inputMinSliderLeft);
+    sliderRight.addEventListener("change",inputMaxSliderRight);
+</script>

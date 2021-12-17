@@ -61,15 +61,31 @@ namespace SportsStoreRad
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            try
             {
+                if (!env.IsDevelopment())
+                {
+                    throw new Exception();
+                }
                 app.UseDeveloperExceptionPage();
             }
-            else
+            catch (Exception ex)
             {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                app.Run(async (context) =>
+                {
+                    await context.Response.WriteAsync($"Error = {ex.Message}");
+                });
             }
+
+            //if (!env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //    app.UseHsts();
+            //}
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseStatusCodePages();
@@ -121,6 +137,9 @@ namespace SportsStoreRad
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Admin}/{action=Index}/{Id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Error}/{Id?}");
 
             });
 

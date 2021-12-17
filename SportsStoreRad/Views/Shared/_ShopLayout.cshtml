@@ -68,10 +68,7 @@
                 <h1 class="h2 pb-4">Фільтри</h1>
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Категорії
-                        </a>
-                        @await Component.InvokeAsync("NavigationMenu")
+                        @await Component.InvokeAsync("NavigationMenu", ViewBag.Filter)
                     </li>
                 </ul>
             </div>

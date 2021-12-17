@@ -12,6 +12,7 @@ namespace SportsStoreRad.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
     {
+
         private IProductRepository repository;
 
         public NavigationMenuViewComponent(IProductRepository repo)
@@ -19,10 +20,19 @@ namespace SportsStoreRad.Components
             repository = repo;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(Filter filter)
         {
             ProductListViewModel ListFilters = new ProductListViewModel();
             var categorys = repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
+            var query = repository.Products.AsQueryable();
+            ListFilters.PriceNumber = new PriceNumber();
+            ListFilters.PriceNumber.PriceMin = (int)(query.Min(point => point.Price));
+            ListFilters.PriceNumber.PriceMax = (int)(query.Max(point => point.Price));
+            ListFilters.PriceNumber.ValuePriceMax = ListFilters.PriceNumber.PriceMax;
+
+            ListFilters.Filter = new Filter();
+            ListFilters.Filter = filter;
+
             foreach (string item in categorys)
             {
                 Filter element = new Filter();
