@@ -22,10 +22,8 @@ namespace SportsStoreRad.Controllers
         [Authorize]
         public ViewResult List()
         {
-            return View(repository.Orders/*.Where(p => !p.Shipped)*/);
+            return View(repository.Orders);
         }
-
-
 
         [HttpPost]
         [Authorize]
@@ -72,7 +70,6 @@ namespace SportsStoreRad.Controllers
                 return View(order);
             }
         }
-
         public ViewResult Completed()
         {
             cart.Clear();

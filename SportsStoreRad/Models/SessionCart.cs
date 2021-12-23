@@ -11,7 +11,6 @@ namespace SportsStoreRad.Models
 {
     public class SessionCart : Cart
     {
-
         public static Cart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?

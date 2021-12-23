@@ -76,8 +76,6 @@ namespace SportsStoreRad.Controllers
             model.Filter.CurrentBrand = filter.CurrentBrand;
             model.Filter.CurrentCategory = filter.CurrentCategory;
 
-            //var categorys = repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
-
             return View(model);
         }
     }

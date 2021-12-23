@@ -77,15 +77,6 @@ namespace SportsStoreRad
                 });
             }
 
-            //if (!env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //    app.UseHsts();
-            //}
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseStatusCodePages();
@@ -93,7 +84,6 @@ namespace SportsStoreRad
 
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
@@ -101,31 +91,7 @@ namespace SportsStoreRad
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{Id?}");
-
-                //endpoints.MapControllerRoute(
-                //    name: "null",
-                //    pattern: "{controller}/{action}/{id}");
-
-                //endpoints.MapControllerRoute(
-                //   name: "pagination",
-                //   pattern: "{category}/Page{productPage}",
-                //   defaults: new { Controller = "Product", action = "List" });
-
-                //endpoints.MapControllerRoute(
-                //   name: "null",
-                //   pattern: "Page{productPage:int}",
-                //   defaults: new { Controller = "Product", action = "List", productPage = 1 });
-
-                //endpoints.MapControllerRoute(
-                //   name: "null",
-                //   pattern: "{category}",
-                //   defaults: new { Controller = "Product", action = "List", productPage = 1 });
-
-                //endpoints.MapControllerRoute(
-                //   name: "null",
-                //   pattern: "",
-                //   defaults: new { Controller = "Product", action = "List", productPage = 1 });
-
+               
                 endpoints.MapControllerRoute(
                    name: "default",
                    pattern: "{controller=Cart}/{action=AddToCart}/{Id?}");
